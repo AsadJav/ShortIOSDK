@@ -35,7 +35,6 @@ object ShortioSdk {
             if (model != null) {
                 ShortIOResult.Success(model)
             } else {
-                // Handle unexpected null/empty success response
                 val errorModel = ShortIOErrorModel(
                     message = "Empty or malformed success response",
                     statusCode = response.code,
@@ -45,7 +44,6 @@ object ShortioSdk {
                 ShortIOResult.Error(errorModel)
             }
         } else {
-            // Try to parse error body into ShortIOErrorModel
             val errorModel = try {
                 responseBody?.let {
                     gson.fromJson(it, ShortIOErrorModel::class.java).copy(statusCode = response.code)
