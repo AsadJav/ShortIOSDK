@@ -15,12 +15,10 @@ This SDK allows you to create short links using the [Short.io](https://short.io/
 
 You can integrate the SDK into your Android Studio project using **JitPack** 
 
-### 🚀 JitPack (Recommended)
-
 To install the SDK via JitPack:
 
 ### Step 1. To add the JitPack repository to your build file, Add it in your root settings.gradle at the end of repositories:
-## For Gradle:
+#### For Gradle:
 ```java
 dependencyResolutionManagement {
 		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -30,7 +28,7 @@ dependencyResolutionManagement {
 		}
 	}
 ```
-## For Gradle.kts
+#### For Gradle.kts
 ```kotlin
 	dependencyResolutionManagement {
 		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -54,7 +52,7 @@ dependencies {
 		implementation("com.github.AsadJav:ShortIOSDK:v1.0.1")
 	}
 ```
-### Step 4. Intallation
+### Step 3. Intallation
 Sync the Project with Gradle file, So the SDK can be Installed.
 
 ### Step 4. Import the SDK
@@ -75,11 +73,12 @@ import com.github.shortio.ShortioSdk
 5. Enable the **Public Key** toggle.
 7. Click **CREATE** to generate your API key.
 
-## 🔗 SDK Usage
+### 🔗 SDK Usage
 
 ```kotlin
 import com.github.shortio.ShortIOParametersModel
 import com.github.shortio.ShortioSdk
+import com.github.shortiosdk.ShortIOResult
 
 try {
     val params = ShortIOParametersModel(
@@ -97,21 +96,25 @@ let apiKey = "your_public_apiKey" // Replace with your Short.io Public API Key
 
 thread {
     try {
-
-        val response = ShortioSdk.shortenUrl(apiKey, params)
-        Log.d("ShortIO Response", "Response: $response")
-        Log.d("ShortIO", "Shortened URL: ${response?.shortURL}")
-        shortenedUrl = response?.shortURL
+        when (val result = ShortioSdk.shortenUrl(apiKey, params)) {
+            is ShortIOResult.Success -> {
+                println("Shortened URL: ${result.data.shortURL}")
+            }
+            is ShortIOResult.Error -> {
+                val error = result.data
+                println("Error ${error.statusCode}: ${error.message} (code: ${error.code})")
+            }
+        }
     } catch (e: Exception) {
         Log.e("ShortIO", "Error: ${e.message}", e)
     }
 }       
 ```
 
-🤖 Deep Linking Setup (App Links for Android)
+## 🤖 Deep Linking Setup (App Links for Android)
 To handle deep links via Short.io on Android, you'll need to set up Android App Links properly using your domain's Digital Asset Links and intent filters.
 
-🔧 Step 1: Configure Intent Filter in AndroidManifest.xml
+### 🔧 Step 1: Configure Intent Filter in AndroidManifest.xml
 Open your Android project.
 
 Navigate to android/app/src/main/AndroidManifest.xml.
@@ -137,7 +140,7 @@ Inside your MainActivity, add an intent filter to handle app links:
 ```
 ✅ Tip: Replace yourshortdomain.short.gy with your actual Short.io domain.
 
-🛡️ Step 2: Configure Asset Links on Short.io
+### 🛡️ Step 2: Configure Asset Links on Short.io
 Go to Short.io.
 
 Navigate to Domain Settings > Deep links for your selected domain.
@@ -161,4 +164,13 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 
 Click Save to update the Digital Asset Links.
 
+### ✅ Final Checklist
+* App is signed with the correct keystore.
 
+* The domain is verified on Short.io.
+
+* The intent-filter is added in AndroidManifest.xml.
+
+* App is installed from Play Store or via direct install (for testing with ADB).
+
+Once these steps are complete, clicking a Short.io link (with your domain) will open the app directly if installed.
