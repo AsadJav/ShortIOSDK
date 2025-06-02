@@ -164,13 +164,16 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 
 Click Save to update the Digital Asset Links.
 
+### 🚦 Step 3: Enable the Link in "Open by Default"
+1. Build and install your app on the device.
+2. Go to **App Settings > Open by Default**.
+3. Tap on **“Add link”** under the **Open by Default** section.
+4. Add your URL and make sure to enable the checkbox for your link.
+
 ### ✅ Final Checklist
 * App is signed with the correct keystore.
-
 * The domain is verified on Short.io.
-
 * The intent-filter is added in AndroidManifest.xml.
-
 * App is installed from Play Store or via direct install (for testing with ADB).
 
 Once these steps are complete, clicking a Short.io link (with your domain) will open the app directly if installed.
