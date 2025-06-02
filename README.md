@@ -27,7 +27,7 @@ dependencyResolutionManagement {
 	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 	repositories {
 		mavenCentral()
-		maven { url 'https://jitpack.io' }
+		maven { url 'https://jitpack.io' } <-- // Add this line
 	}
 }
 ```
@@ -38,14 +38,14 @@ dependencyResolutionManagement {
 	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 	repositories {
 		mavenCentral()
-		maven { url = uri("https://jitpack.io") }
+		maven { url = uri("https://jitpack.io") } <-- // Add this line
 	}
 }
 ```
 
 ### 2. Add the dependency
+
 Open App level build.gradle file `build.gradle.kts (Module:app)`, Add the dependency:
-Example:
 
 ```kotlin
 dependencies {
