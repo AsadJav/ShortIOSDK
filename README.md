@@ -68,10 +68,14 @@ import com.github.shortio.ShortioSdk
 ### Step 1: Get Public API Key from Short.io
 
 1. Visit [Short.io](https://short.io/) and **sign up** or **log in** to your account.
-3. In the dashboard, navigate to **Integrations & API**.
-4. Click **CREATE API KEY** button.
-5. Enable the **Public Key** toggle.
-7. Click **CREATE** to generate your API key.
+   
+2. In the dashboard, navigate to **Integrations & API**.
+
+3. Click **CREATE API KEY** button.
+
+4. Enable the **Public Key** toggle.
+
+5. Click **CREATE** to generate your API key.
 
 ### 🔗 SDK Usage
 
@@ -115,11 +119,11 @@ thread {
 To handle deep links via Short.io on Android, you'll need to set up Android App Links properly using your domain's Digital Asset Links and intent filters.
 
 ### 🔧 Step 1: Configure Intent Filter in AndroidManifest.xml
-Open your Android project.
+1. Open your Android project.
 
-Navigate to android/app/src/main/AndroidManifest.xml.
+2. Navigate to android/app/src/main/AndroidManifest.xml.
 
-Inside your MainActivity, add an intent filter to handle app links:
+3. Inside your MainActivity, add an intent filter to handle app links:
 ```
 <activity
     android:name=".MainActivity"
@@ -141,13 +145,14 @@ Inside your MainActivity, add an intent filter to handle app links:
 ✅ Tip: Replace yourshortdomain.short.gy with your actual Short.io domain.
 
 ### 🛡️ Step 2: Configure Asset Links on Short.io
-Go to Short.io.
 
-Navigate to Domain Settings > Deep links for your selected domain.
+1. Go to Short.io.
 
-In the Android Package Name field, enter your app's package name (e.g., com.example.app).
+2. Navigate to Domain Settings > Deep links for your selected domain.
 
-In the SHA-256 Certificate Fingerprint field, enter your release key’s SHA-256 fingerprint.
+3. In the Android Package Name field, enter your app's package name (e.g., com.example.app).
+
+4. In the SHA-256 Certificate Fingerprint field, enter your release key’s SHA-256 fingerprint.
 ```
 // Example Package:
 com.example.app
@@ -162,18 +167,26 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 ```
 📌 Note: Use the SHA-256 of your release keystore for production builds.
 
-Click Save to update the Digital Asset Links.
+5. Click Save to update the Digital Asset Links.
 
 ### 🚦 Step 3: Enable the Link in "Open by Default"
+
 1. Build and install your app on the device.
+
 2. Go to **App Settings > Open by Default**.
+
 3. Tap on **“Add link”** under the **Open by Default** section.
+
 4. Add your URL and make sure to enable the checkbox for your link.
 
 ### ✅ Final Checklist
+
 * App is signed with the correct keystore.
+
 * The domain is verified on Short.io.
+  
 * The intent-filter is added in AndroidManifest.xml.
+  
 * App is installed from Play Store or via direct install (for testing with ADB).
 
 Once these steps are complete, clicking a Short.io link (with your domain) will open the app directly if installed.
