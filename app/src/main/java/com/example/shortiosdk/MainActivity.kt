@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.github.shortio.ShortIOParametersModel
 import com.github.shortio.ShortioSdk
+import com.github.shortiosdk.ShortIOResult
 import kotlin.concurrent.thread
 
 
@@ -92,8 +93,15 @@ fun LinkShorteningButton() {
                         domain = "demodeeplinkapp.short.gy"
                     )
 
-                    val response = ShortioSdk.shortenUrl("pk_VPfQI2HDiStIVUB0", params)
-                    Log.d("ShortIO", "Shortened URL: ${response?.shortURL}")
+                    when (val result = ShortioSdk.shortenUrl("pk_VPfQI2HDiStIVUB0", params)) {
+                        is ShortIOResult.Success -> {
+                            println("Shortened URL: ${result.data.shortURL}")
+                        }
+                        is ShortIOResult.Error -> {
+                            val error = result.data
+                            println("Error ${error.statusCode}: ${error.message} (code: ${error.code})")
+                        }
+                    }
                 } catch (e: Exception) {
                     Log.e("ShortIO", "Error: ${e.message}", e)
                 }
