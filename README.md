@@ -17,7 +17,10 @@ You can integrate the SDK into your Android Studio project using **JitPack**
 
 To install the SDK via JitPack:
 
-### Step 1. To add the JitPack repository to your build file, Add it in your root settings.gradle at the end of repositories:
+### Step 1. Add JitPack Repository
+
+To add the JitPack repository to your build file, Add it in your root `settings.gradle` at the end of repositories:
+
 #### For Gradle:
 ```java
 dependencyResolutionManagement {
@@ -28,6 +31,7 @@ dependencyResolutionManagement {
 		}
 	}
 ```
+
 #### For Gradle.kts
 ```kotlin
 	dependencyResolutionManagement {
@@ -38,28 +42,32 @@ dependencyResolutionManagement {
 		}
 	}
 ```
+
 ### Step 2. Add the dependency
 Open App level build.gradle file `build.gradle.kts (Module:app)`, Add the dependency:
-Example
+Example:
+
 ```kotlin
 dependencies {
 		implementation("com.github.User:Repo:Tag")
 	}
 ```
+
 It will be:
 ```kotlin
 dependencies {
-		implementation("com.github.AsadJav:ShortIOSDK:v1.0.1")
+		implementation("com.github.AsadJav:ShortIOSDK:v1.0.0")
 	}
 ```
-### Step 3. Intallation
+### Step 3. Sync the Project
 Sync the Project with Gradle file, So the SDK can be Installed.
 
 ### Step 4. Import the SDK
 Import the SDK where it is needed by using:
 ```kotlin
-import com.github.shortio.ShortIOParametersModel
 import com.github.shortio.ShortioSdk
+import com.github.shortio.ShortIOParametersModel
+import com.github.shortiosdk.ShortIOResult
 ``` 
 
 ## 🔑 Getting Started
@@ -80,19 +88,20 @@ import com.github.shortio.ShortioSdk
 ### 🔗 SDK Usage
 
 ```kotlin
-import com.github.shortio.ShortIOParametersModel
 import com.github.shortio.ShortioSdk
+import com.github.shortio.ShortIOParametersModel
 import com.github.shortiosdk.ShortIOResult
 
 try {
     val params = ShortIOParametersModel(
       domain = "your_domain", // Replace with your Short.io domain
-      originalURL = "your_originalURL"// Replace with your Short.io domain
+      originalURL = "your_originalURL" // Replace with your Short.io domain
     )
 } catch (e: Exception) {
     Log.e("ShortIO", "Error: ${e.message}", e)
 }
 ```
+
 **Note**: Both `domain` and `originalURL` are the required parameters. You can also pass optional parameters such as `path`, `title`, `utmParameters`, etc.
 
 ```kotlin
@@ -119,6 +128,7 @@ thread {
 To handle deep links via Short.io on Android, you'll need to set up Android App Links properly using your domain's Digital Asset Links and intent filters.
 
 ### 🔧 Step 1: Configure Intent Filter in AndroidManifest.xml
+
 1. Open your Android project.
 
 2. Navigate to android/app/src/main/AndroidManifest.xml.
