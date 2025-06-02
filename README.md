@@ -1,5 +1,5 @@
 
-# ShortLink SDK for Android (Deep Linking Integration using Short.io)
+# ShortIOSDK for Android
 
 This SDK allows you to create short links using the [Short.io](https://short.io/) API based on a public API key and custom parameters. It also supports Android deep linking integration.
 
@@ -17,52 +17,52 @@ You can integrate the SDK into your Android Studio project using **JitPack**
 
 To install the SDK via JitPack:
 
-### Step 1. Add JitPack Repository
+### 1. Add JitPack Repository
 
 To add the JitPack repository to your build file, Add it in your root `settings.gradle` at the end of repositories:
 
 #### For Gradle:
 ```java
 dependencyResolutionManagement {
-		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-		repositories {
-			mavenCentral()
-			maven { url 'https://jitpack.io' }
-		}
+	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	repositories {
+		mavenCentral()
+		maven { url 'https://jitpack.io' }
 	}
+}
 ```
 
 #### For Gradle.kts
 ```kotlin
-	dependencyResolutionManagement {
-		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-		repositories {
-			mavenCentral()
-			maven { url = uri("https://jitpack.io") }
-		}
+dependencyResolutionManagement {
+	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	repositories {
+		mavenCentral()
+		maven { url = uri("https://jitpack.io") }
 	}
+}
 ```
 
-### Step 2. Add the dependency
+### 2. Add the dependency
 Open App level build.gradle file `build.gradle.kts (Module:app)`, Add the dependency:
 Example:
 
 ```kotlin
 dependencies {
-		implementation("com.github.User:Repo:Tag")
-	}
+	implementation("com.github.User:Repo:Tag")
+}
 ```
 
 It will be:
 ```kotlin
 dependencies {
-		implementation("com.github.AsadJav:ShortIOSDK:v1.0.0")
-	}
+	implementation("com.github.AsadJav:ShortIOSDK:v1.0.0")
+}
 ```
-### Step 3. Sync the Project
+### 3. Sync the Project
 Sync the Project with Gradle file, So the SDK can be Installed.
 
-### Step 4. Import the SDK
+### 4. Import the SDK
 Import the SDK where it is needed by using:
 ```kotlin
 import com.github.shortio.ShortioSdk
@@ -71,7 +71,6 @@ import com.github.shortiosdk.ShortIOResult
 ``` 
 
 ## 🔑 Getting Started
-
 
 ### Step 1: Get Public API Key from Short.io
 
@@ -124,7 +123,7 @@ thread {
 }       
 ```
 
-## 🤖 Deep Linking Setup (App Links for Android)
+## 🤖 Deep Linking Setup
 To handle deep links via Short.io on Android, you'll need to set up Android App Links properly using your domain's Digital Asset Links and intent filters.
 
 ### 🔧 Step 1: Configure Intent Filter in AndroidManifest.xml
