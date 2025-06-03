@@ -21,8 +21,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.github.shortio.ShortIOParametersModel
-import com.github.shortio.ShortioSdk
+import com.github.shortiosdk.ShortIOParametersModel
+import com.github.shortiosdk.ShortioSdk
 import com.github.shortiosdk.ShortIOResult
 import kotlin.concurrent.thread
 
