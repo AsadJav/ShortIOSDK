@@ -66,8 +66,6 @@ Sync the Project with Gradle file, So the SDK can be Installed.
 Import the SDK where it is needed by using:
 ```kotlin
 import com.github.shortio.ShortioSdk
-import com.github.shortio.ShortIOParametersModel
-import com.github.shortiosdk.ShortIOResult
 ``` 
 
 ## 🔑 Getting Started
@@ -89,7 +87,7 @@ import com.github.shortiosdk.ShortIOResult
 ```kotlin
 import com.github.shortio.ShortioSdk
 import com.github.shortio.ShortIOParametersModel
-import com.github.shortiosdk.ShortIOResult
+import com.github.shortio.ShortIOResult
 
 try {
     val params = ShortIOParametersModel(
@@ -124,6 +122,7 @@ thread {
 ```
 
 ## 🤖 Deep Linking Setup
+
 To handle deep links via Short.io on Android, you'll need to set up Android App Links properly using your domain's Digital Asset Links and intent filters.
 
 ### 🔧 Step 1: Configure Intent Filter in AndroidManifest.xml
