@@ -56,7 +56,7 @@ dependencies {
 It will be:
 ```kotlin
 dependencies {
-	implementation("com.github.AsadJav:ShortIOSDK:v1.0.0")
+	implementation("com.github.AsadJav:ShortIOSDK:v1.0.5")
 }
 ```
 ### 3. Sync the Project
@@ -65,7 +65,7 @@ Sync the Project with Gradle file, So the SDK can be Installed.
 ### 4. Import the SDK
 Import the SDK where it is needed by using:
 ```kotlin
-import com.github.shortio.ShortioSdk
+import com.github.shortiosdk.ShortioSdk
 ``` 
 
 ## 🔑 Getting Started
@@ -85,9 +85,9 @@ import com.github.shortio.ShortioSdk
 ### 🔗 SDK Usage
 
 ```kotlin
-import com.github.shortio.ShortioSdk
-import com.github.shortio.ShortIOParametersModel
-import com.github.shortio.ShortIOResult
+import com.github.shortiosdk.ShortioSdk
+import com.github.shortiosdk.ShortIOParametersModel
+import com.github.shortiosdk.ShortIOResult
 
 try {
     val params = ShortIOParametersModel(
