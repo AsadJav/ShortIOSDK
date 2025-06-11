@@ -15,7 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.shortiosdk.ui.theme.ShortIOSDKTheme
+//import com.example.shortiosdk.ui.theme.ShortIOSDKTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.github.shortiosdk.ShortIOParametersModel
 import com.github.shortiosdk.ShortioSdk
 import com.github.shortiosdk.ShortIOResult
+import com.github.shortiosdk.StringOrInt
 import kotlin.concurrent.thread
 
 
@@ -42,7 +43,7 @@ class MainActivity : ComponentActivity() {
                 latestUri?.let { Log.d("DeepLink", "Initial URI: $it") }
             }
 
-            ShortIOSDKTheme {
+//            ShortIOSDKTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Column(
                         modifier = Modifier
@@ -63,7 +64,7 @@ class MainActivity : ComponentActivity() {
                         LinkShorteningButton()
                     }
                 }
-            }
+//            }
             intentHandler = { uri ->
                 uriState.value = uri
                 Log.d("DeepLink", "New Intent URI: $uri")
@@ -90,7 +91,33 @@ fun LinkShorteningButton() {
                 try {
                     val params = ShortIOParametersModel(
                         originalURL = "https://demodeeplinkapp.short.gy/",
-                        domain = "demodeeplinkapp.short.gy"
+                        domain = "demodeeplinkapp.short.gy",
+                        cloaking = true,
+                        password = "1234",
+                        redirectType = 301,
+                        expiresAt = StringOrInt.IntVal(223),
+                        title = "OK",
+                        tags = arrayOf("one","two"),
+                        utmSource = "qwerty",
+                        utmMedium = "qwerty1",
+                        utmCampaign = "qwerty2",
+                        utmTerm = "qwerty3",
+                        utmContent = "qwerty4",
+                        path = "qwerty6",
+                        androidURL = "qwerty7",
+                        iphoneURL = "qwerty8",
+                        createdAt = StringOrInt.IntVal(545),
+                        clicksLimit = 1,
+                        passwordContact = true,
+                        skipQS = true,
+                        archived = true,
+                        splitURL = "qwerty10",
+                        splitPercent = 1,
+                        integrationAdroll = "qwerty11",
+                        integrationFB = "qwerty12",
+                        integrationGA = "qwerty13",
+                        integrationGTM = "qwerty14",
+                        folderId = ""
                     )
 
                     when (val result = ShortioSdk.shortenUrl("pk_VPfQI2HDiStIVUB0", params)) {

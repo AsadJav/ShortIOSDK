@@ -1,11 +1,11 @@
 package com.github.shortiosdk
 
+import com.github.shortiosdk.Helpers.StringOrIntSerializer
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
-import com.google.gson.Gson
 import okhttp3.RequestBody.Companion.toRequestBody
-import com.github.shortiosdk.ShortIOResult
-import com.github.shortiosdk.ShortIOErrorModel
+import com.google.gson.GsonBuilder
+
 
 
 object ShortioSdk {
@@ -13,7 +13,9 @@ object ShortioSdk {
         apiKey: String,
         parameters: ShortIOParametersModel
     ): ShortIOResult {
-        val gson = Gson()
+        val gson = GsonBuilder()
+            .registerTypeAdapter(StringOrInt::class.java, StringOrIntSerializer())
+            .create()
         val client = OkHttpClient()
         val mediaType = "application/json".toMediaType()
         val jsonBody = gson.toJson(parameters)
@@ -46,7 +48,8 @@ object ShortioSdk {
         } else {
             val errorModel = try {
                 responseBody?.let {
-                    gson.fromJson(it, ShortIOErrorModel::class.java).copy(statusCode = response.code)
+                    gson.fromJson(it, ShortIOErrorModel::class.java)
+                        ?.copy(statusCode = response.code)
                 } ?: ShortIOErrorModel(
                     message = "Unknown error",
                     statusCode = response.code,
@@ -55,13 +58,13 @@ object ShortioSdk {
                 )
             } catch (e: Exception) {
                 ShortIOErrorModel(
-                    message = "Malformed error response",
+                    message = "Malformed error response: ${e.localizedMessage}",
                     statusCode = response.code,
                     code = "INVALID_JSON",
                     success = false
                 )
             }
-            ShortIOResult.Error(errorModel)
+            return ShortIOResult.Error(errorModel)
         }
     }
 }
